@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="src/public/css/main.css">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <h1>Logo.</h1>
+            </div>
+            <div class="menu-button">
+                <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
+                <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+            </div>
+        </nav>
+
+
+        <div class="form-box">
+            <!-- form - login -->
+            <form class="form" id="formLogin">
+                <!-- login -->
+                <div class="login-container" id="login">
+                    <div class="form-con">
+                        <p>Don't have an account? <a href="#" onclick="register()">Sing Up</a></p>
+                        <h1>Login</h1>
+                    </div>
+                    <div class="input-button">
+                        <input type="email" name="email" class="input-field" placeholder="Email">
+                        <i class="bx bx-envelope"></i>
+                    </div>
+                    <div class="input-button">
+                        <input type="password" name="password" class="input-field" placeholder="Password">
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <button class="submit" type="submit" >Login</button>
+                    </div>
+                    <div class="two-col">
+                        <div class="one">
+                            <input type="checkbox">
+                            <label for=""> Remember Me</label>
+                        </div>
+                        <div class="two">
+                            <label><a href="#">Forgot password?</a></label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <form class="form" id="formRegister">
+                <!-- register -->
+                <div class="register-container" id="register">
+                    <div class="form-con">
+                        <p>Have an account? <a href="#" onclick="login()">Login</a></p>
+                        <h1>Sign Up</h1>
+                    </div>
+
+                    <div class="two-forms">
+                        <div class="input-button">
+                            <input type="text" name="Firstname" class="input-field" placeholder="Firstname">
+                            <i class="bx bx-user"></i>
+                        </div>
+                        <div class="input-button">
+                            <input type="text" name="Lastname" class="input-field" placeholder="Lastname">
+                            <i class="bx bx-user"></i>
+                        </div>
+                    </div>
+                    <div class="input-button">
+                        <input type="email" name="email" class="input-field" placeholder="Email">
+                        <i class="bx bx-envelope"></i>
+                    </div>
+                    <div class="input-button">
+                        <input type="password" name="password" class="input-field" placeholder="Password">
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <button class="submit" type="submit" >Register</button>
+                    </div>
+                    <div class="two-col">
+                        <div class="one">
+                            <input type="checkbox">
+                            <label for=""> Remember Me</label>
+                        </div>
+                        <div class="two">
+                            <label><a href="#">Terms & conditions</a></label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

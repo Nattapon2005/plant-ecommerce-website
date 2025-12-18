@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping... </title>
+    <link rel="stylesheet" href="src/public/css/home.css">
+    <link rel="stylesheet" href="src/public/css/responsive.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    <!-- <div class="container">
+        <div class="box-show" id="showData">
+        </div>
+
+        <div class="product" id="productsCon"></div>
+    </div> -->
+
+    <!-- header -->
+
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <nav>
+                    <div class="nav-logo">
+                        <img src="/imgs/plant1-1.png" alt="">
+                        <h2>Planto.</h2>
+                    </div>
+                    <div class="nav-menus">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#"> Plants Type </a> <i class='bx bx-chevron-down'></i> </li>
+                            <li><a href="#">More</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="responsive-menu" onclick="toggleMenu()">
+                        <i class='bx bx-menu'></i>
+                    </div>
+
+                    <div class="nav-items">
+                        <div class="nav-con-item">
+                            <div class="nav-item-icon">
+                                <i class='bx bx-search'></i>
+                            </div>
+                            <div class="nav-item-icon shopping-cart-icon" onclick="toggleCart()">
+                                <i class='bx bx-shopping-bag'></i>
+                                <div class="shopping-cart">
+                                    <span id="cart-count">0</span>
+                                </div>
+                            </div>
+                            <div class="nav-item-icon">
+                                <i class='bx bx-menu-alt-right'></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- product shopping -->
+
+    <section class="nav-product">
+
+        <div class="nav-con-product">
+            <div class="product-shopping">
+                <h2>Products </h2>
+                <div class="shopping-close" onclick="closeCart()">
+                    <i class='bx bx-x'></i>
+                </div>
+            </div>
+
+            <div class="scroll">
+                <div class="nav-product-con">
+
+                    <div class="show-product" id="show-product">
+
+
+                        <!-- <div class="show-product-data">
+                            <div class="shoe-product-title">
+                                <img src="images/1.png" alt="">
+                                <div class="show-choose">
+                                    <div class="show-data-choose">
+                                        <span>Product Name</span>
+                                        <p>price : 359</p>
+                                        <div class="end-show">
+                                            <p>
+                                                Delete
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="number-product">
+                                <div class="number-product-choose">
+                                    <input type="number" min="1" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="show-product-data">
+                            <div class="shoe-product-title">
+                                <img src="images/1.png" alt="">
+                                <div class="show-choose">
+                                    <div class="show-data-choose">
+                                        <span>Product Name</span>
+                                        <p>price : 359</p>
+                                        <div class="end-show">
+                                            <p>
+                                                Delete
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="number-product">
+                                <div class="number-product-choose">
+                                    <input type="number" min="1" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="show-product-data">
+                            <div class="shoe-product-title">
+                                <img src="images/1.png" alt="">
+                                <div class="show-choose">
+                                    <div class="show-data-choose">
+                                        <span>Product Name</span>
+                                        <p>price : 359</p>
+                                        <div class="end-show">
+                                            <p>
+                                                Delete
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="number-product">
+                                <div class="number-product-choose">
+                                    <input type="number" min="1" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="show-product-data">
+                            <div class="shoe-product-title">
+                                <img src="images/1.png" alt="">
+                                <div class="show-choose">
+                                    <div class="show-data-choose">
+                                        <span>Product Name</span>
+                                        <p>price : 359</p>
+                                        <div class="end-show">
+                                            <p>
+                                                Delete
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="number-product">
+                                <div class="number-product-choose">
+                                    <input type="number" min="1" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="show-product-data">
+                            <div class="shoe-product-title">
+                                <img src="images/1.png" alt="">
+                                <div class="show-choose">
+                                    <div class="show-data-choose">
+                                        <span>Product Name</span>
+                                        <p>price : 359</p>
+                                        <div class="end-show">
+                                            <p>
+                                                Delete
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="number-product">
+                                <div class="number-product-choose">
+                                    <input type="number" min="1" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="show-product-data">
+                            <div class="shoe-product-title">
+                                <img src="images/1.png" alt="">
+                                <div class="show-choose">
+                                    <div class="show-data-choose">
+                                        <span>Product Name</span>
+                                        <p>price : 359</p>
+                                        <div class="end-show">
+                                            <p>
+                                                Delete
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="number-product">
+                                <div class="number-product-choose">
+                                    <input type="number" min="1" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="show-product-data">
+                            <div class="shoe-product-title">
+                                <img src="images/1.png" alt="">
+                                <div class="show-choose">
+                                    <div class="show-data-choose">
+                                        <span>Product Name</span>
+                                        <p>price : 359</p>
+                                        <div class="end-show">
+                                            <p>
+                                                Delete
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="number-product">
+                                <div class="number-product-choose">
+                                    <input type="number" min="1" value="1">
+                                </div>
+                            </div>
+                        </div> -->
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-total">
+                <p id="total">Total: 0 </p>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- breath-natureal -->
+
+    <div class="breath-natureal">
+        <div class="container">
+
+            <div class="box-con">
+
+                <div class="box-con-left">
+
+                    <div class="box-left">
+                        <h1>Breath Natureal</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                        <div class="box-btn">
+                            <button>Explore</button>
+                            <div class="box-demo bx-fade-left">
+                                <div class="box-vido">
+                                    <i class='bx bxs-right-arrow '></i>
+                                </div>
+                            </div>
+                            <div class="live-demo">
+                                <span>
+                                    Live Demo...
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-left-review">
+                        <div class="box-review-img">
+                            <img src="/imgs/aiony-haust-3TLl_97HNJo-unsplash.jpg" alt="">
+                            <div class="box-title">
+                                <h3>alena Patel</h3>
+                                <div class="stars">★ ★ ★ ★ ☆</div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="box-right">
+                    <div class="box-contant">
+                        <div class="box-padding">
+                            <div class="box-img-right">
+                                <img src="/images/1.png" alt="">
+                            </div>
+                            <div class="box-contant-right">
+                                <p>
+                                    Trendy House Plant
+                                </p>
+                                <div class="box-btn">
+                                    <h3>
+                                        Calathea Plant
+                                    </h3>
+                                    <i class='bx bx-chevron-right'></i>
+                                </div>
+                                <button>
+                                    Buy Now
+                                </button>
+
+                                <div class="btn-icon">
+                                    <span></span>
+                                    <span class="white"></span>
+                                    <span></span>
+                                    <!-- <i class='bx bx-wifi-0'></i>
+                                    <i class='white bx bx-wifi-0'></i>
+                                    <i class='bx bx-wifi-0'></i> -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Our-Trendy-plants -->
+
+    <div class="Our-Trendy-plants">
+        <div class="container">
+
+            <div class="our-con">
+                <div class="our-trendy-plants-header">
+                    <span class="corner left"></span>
+                    <h1>Our Trendy plants</h1>
+                    <span class="corner right"></span>
+                </div>
+            </div>
+
+            <div class="our-trendy-plants-items">
+                <div class="our-trendy-plants-items-product">
+                    <div class="item-product-img">
+                        <img class="item-img" src="/images/2.png" alt="">
+                    </div>
+
+                    <div class="item-product-title">
+                        <div class="item-product-con">
+                            <h2>
+                                For Small Decs Ai Plat
+                            </h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua
+                            </p>
+                            <h3>
+                                Rs. 599/-
+                            </h3>
+                            <div class="item-product-btn-button">
+                                <button>
+                                    Explore
+                                </button>
+                                <div class="item-product-btn-icon">
+                                    <i class='bx bx-shopping-bag'></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="our-trendy-plants-items">
+                <div class="our-trendy-plants-items-product">
+
+                    <div class="item-product-title">
+                        <div class="item-product-con">
+                            <h2>
+                                For Small Decs Ai Plat
+                            </h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua
+                            </p>
+                            <h3>
+                                Rs. 599/-
+                            </h3>
+                            <div class="item-product-btn-button">
+                                <button>
+                                    Explore
+                                </button>
+                                <div class="item-product-btn-icon">
+                                    <i class='bx bx-shopping-bag'></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-product-img">
+                        <img class="item-img img2" src="/images/7.png" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Our Top Selling -->
+
+    <div class="our-top-selling">
+        <div class="container">
+
+            <div class="our-con">
+                <div class="our-trendy-plants-header">
+                    <span class="corner left"></span>
+                    <h1>Our Trendy plants</h1>
+                    <span class="corner right"></span>
+                </div>
+            </div>
+
+            <div id="productsCon" class="our-top-selling-products">
+
+                <!-- <div class="product-moves">
+                    <div class="product-top">
+                        <img src="/images/1.png" alt="">
+                    </div>
+                    <div class="product-tile">
+                        <h2>
+                            For Small Decs Ai Plat
+                        </h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                        <div class="item-product-btn-button">
+                            <h3>
+                                Rs. 359/-
+                            </h3>
+                            <div class="item-product-btn-icon">
+                                <i class='bx bx-shopping-bag'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-moves">
+                    <div class="product-top">
+                        <img src="/images/2.png" alt="">
+                    </div>
+                    <div class="product-tile">
+                        <h2>
+                            For Small Decs Ai Plat
+                        </h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                        <div class="item-product-btn-button">
+                            <h3>
+                                Rs. 359/-
+                            </h3>
+                            <div class="item-product-btn-icon">
+                                <i class='bx bx-shopping-bag'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-moves">
+                    <div class="product-top">
+                        <img src="/images/3.png" alt="">
+                    </div>
+                    <div class="product-tile">
+                        <h2>
+                            For Small Decs Ai Plat
+                        </h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                        <div class="item-product-btn-button">
+                            <h3>
+                                Rs. 359/-
+                            </h3>
+                            <div class="item-product-btn-icon">
+                                <i class='bx bx-shopping-bag'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-moves">
+                    <div class="product-top">
+                        <img src="/images/4.png" alt="">
+                    </div>
+                    <div class="product-tile">
+                        <h2>
+                            For Small Decs Ai Plat
+                        </h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                        <div class="item-product-btn-button">
+                            <h3>
+                                Rs. 359/-
+                            </h3>
+                            <div class="item-product-btn-icon">
+                                <i class='bx bx-shopping-bag'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-moves">
+                    <div class="product-top">
+                        <img src="/images/5.png" alt="">
+                    </div>
+                    <div class="product-tile">
+                        <h2>
+                            For Small Decs Ai Plat
+                        </h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                        <div class="item-product-btn-button">
+                            <h3>
+                                Rs. 359/-
+                            </h3>
+                            <div class="item-product-btn-icon">
+                                <i class='bx bx-shopping-bag'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-moves">
+                    <div class="product-top">
+                        <img src="/images/6.png" alt="">
+                    </div>
+                    <div class="product-tile">
+                        <h2>
+                            For Small Decs Ai Plat
+                        </h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                        <div class="item-product-btn-button">
+                            <h3>
+                                Rs. 359/-
+                            </h3>
+                            <div class="item-product-btn-icon">
+                                <i class='bx bx-shopping-bag'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-moves">
+                    <div class="product-top">
+                        <img src="/images/7.png" alt="">
+                    </div>
+                    <div class="product-tile">
+                        <h2>
+                            For Small Decs Ai Plat
+                        </h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                        <div class="item-product-btn-button">
+                            <h3>
+                                Rs. 359/-
+                            </h3>
+                            <div class="item-product-btn-icon">
+                                <i class='bx bx-shopping-bag'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Customer Review -->
+
+    <div class="customer-review">
+        <div class="container">
+
+            <div class="our-con">
+                <div class="our-trendy-plants-header">
+                    <span class="corner left"></span>
+                    <h1>Our Trendy plants</h1>
+                    <span class="corner right"></span>
+                </div>
+            </div>
+
+            <div class="customer-review-con">
+
+                <div class="customer-review-products">
+                    <div class="review-products">
+                        <div class="review-products-img">
+                            <img src="/imgs/review1.jpg" alt="">
+                            <div class="box-title">
+                                <h3>alena Patel</h3>
+                                <div class="stars">★ ★ ★ ★ ☆</div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        </p>
+                    </div>
+                </div>
+
+                <div class="customer-review-products">
+                    <div class="review-products">
+                        <div class="review-products-img">
+                            <img src="/imgs/review2.jpg" alt="">
+                            <div class="box-title">
+                                <h3>alena Patel</h3>
+                                <div class="stars">★ ★ ★ ★ ☆</div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        </p>
+                    </div>
+                </div>
+
+                <div class="customer-review-products">
+                    <div class="review-products">
+                        <div class="review-products-img">
+                            <img src="/imgs/review3.jpg" alt="">
+                            <div class="box-title">
+                                <h3>alena Patel</h3>
+                                <div class="stars">★ ★ ★ ★ ☆</div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Our Best o2 -->
+
+    <div class="our-best-o2">
+        <div class="container">
+
+            <div class="our-con">
+                <div class="our-trendy-plants-header">
+                    <span class="corner left"></span>
+                    <h1>Our Trendy plants</h1>
+                    <span class="corner right"></span>
+                </div>
+            </div>
+
+            <div class="our-best-o2-con">
+                <div class="our-best-o2-img">
+                    <img src="/images/1.png" alt="">
+                </div>
+
+                <div class="our-best-o2-title">
+                    <h2>
+                        We Have Small And Best O2 Plants Collection’s
+                    </h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    </p>
+                    <div class="our-best-o2-button">
+                        <button>
+                            Explore
+                        </button>
+                        <div class="our-best-o2-btn">
+                            <i class='bx bx-chevron-left'></i>
+                            <span>01/04</span>
+                            <i class='white bx bx-chevron-right'></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="our-best-o2-btn-icon">
+                <span class="btn-con"></span>
+                <span class="btn-con white"></span>
+                <span class="btn-con"></span>
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-con">
+
+                <div class="footer-logo">
+                    <div class="footer-logo-img">
+                        <img src="/imgs/plant1-1.png" alt="">
+                        <h1>Planto.</h1>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                    <div class="footer-logo-end">
+                        <h2>
+                            FB
+                        </h2>
+                        <h2>
+                            TW
+                        </h2>
+                        <h2>
+                            LI
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="footer-menu one">
+                    <h2>
+                        Quick Link’s
+                    </h2>
+                    <div class="menu-footer">
+                        <p>
+                            Home
+                        </p>
+                        <p>
+                            Type’s Of plant’s
+                        </p>
+                        <p>
+                            Contact
+                        </p>
+                        <p>Privacy</p>
+                    </div>
+                </div>
+
+                <div class="footer-menu two">
+                    <h2>
+                        For Every Update.
+                    </h2>
+
+                    <div class="footer-menu-text-end">
+                        <div class="footer-text">
+                            <input type="email" placeholder="Enter Email">
+                            <button>
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="footer-btn-end">
+                        <p>
+                            planto © all right reserve
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="home.js"></script>
+
+</body>
+
+</html>

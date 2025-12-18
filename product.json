@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": " Calathea plant",
+        "price": 359,
+        "image": "images/1.png"
+    },
+    {
+        "id": 2,
+        "name": " Calathea plant",
+        "price": 359,
+        "image": "images/2.png"
+    },
+    {
+        "id": 3,
+        "name": " Calathea plant",
+        "price": 359,
+        "image": "images/3.png"
+    },
+    {
+        "id": 4,
+        "name": " Calathea plant",
+        "price": 359,
+        "image": "images/4.png"
+    },
+    {
+        "id": 5,
+        "name": " Calathea plant",
+        "price": 359,
+        "image": "images/5.png"
+    },
+    {
+        "id": 6,
+        "name": " Calathea plant",
+        "price": 359,
+        "image": "images/6.png"
+    },
+    {
+        "id": 7,
+        "name": " Calathea plant",
+        "price": 359,
+        "image": "images/7.png"
+    }
+]

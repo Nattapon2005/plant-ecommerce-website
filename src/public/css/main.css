@@ -1,0 +1,290 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  background: url("/imgs/1.jpg");
+  /* object-fit: cover; ทําให้รูปภาพมัน สมูดขึ้น*/
+  /* object-fit: cover; */
+  /* background-size: cover; ปรับขนาดภาพให้ครอบคลุมจอ */
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: animationImg 25s ease-in-out infinite;
+  background-position: 0% 50%;
+  overflow: hidden;
+}
+
+/* animation	เป็น shorthand (ย่อ) สำหรับการตั้งค่าคุณสมบัติ animation หลายๆ อย่างในบรรทัดเดียว
+animationImg	คือชื่อของ keyframes ที่จะใช้	อ้างอิงจาก @keyframes animationImg { ... }
+25s	ระยะเวลาในการรัน animation ต่อ 1 รอบ = 25 วินาที	แอนิเมชันจะใช้เวลา 25 วินาทีในการเปลี่ยนจาก 0% → 100%
+ease-in-out	รูปแบบของการเร่งและชะลอความเร็ว	เริ่มและจบอย่างช้าๆ ตรงกลางเร็วขึ้น
+infinite	ทำให้ animation เล่นวนซ้ำไปเรื่อยๆ ไม่มีที่สิ้นสุด	ถ้าไม่ใส่ จะเล่นแค่ครั้งเดียวแล้วหยุด */
+@keyframes animationImg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  background: rgba(39, 39, 39, 0.3);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  padding: 0 150px;
+  background: linear-gradient(rgba(39, 39, 39, 0.6), transparent);
+}
+
+nav .logo h1 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+nav .menu-button .btn {
+  padding: 12px 40px;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  font-weight: 600;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+nav .menu-button .btn.white-btn {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+nav .menu-button .btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+nav .nav-menu-btn {
+  display: none;
+}
+
+/* form */
+.form-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 512px;
+  height: 450px;
+  /* background-color: black; */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  color: #fff;
+  z-index: 2;
+}
+
+.form-box .form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: blue; */
+}
+
+.form-box .form .login-container,
+.form-box .form .register-container {
+  position: absolute;
+  width: 500px;
+  /* background-color: blueviolet; */
+  transition: 0.5s ease-in-out;
+}
+
+.form-box .form .login-container .form-con p a,
+.form-box .form .register-container .form-con p a {
+  margin-left: 7px;
+  color: #fff;
+}
+
+.form-box .form .login-container .form-con h1,
+.form-box .form .register-container .form-con h1 {
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.form-box .form .login-container .two-forms,
+.form-box .form .register-container .two-forms {
+  display: flex;
+  gap: 10px;
+}
+
+.form-box .form .login-container .input-button,
+.form-box .form .register-container .input-button {
+  position: relative;
+  width: 100%;
+}
+
+.form-box .form .login-container .input-button i,
+.form-box .form .register-container .input-button i {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #000;
+}
+
+.form-box .form .login-container .input-button .input-field,
+.form-box .form .register-container .input-button .input-field {
+  width: 100%;
+  /* padding: 15px 20px; */
+  height: 50px;
+  width: 100%;
+  padding: 0 10px 0 20px;
+  outline: none;
+  border: none;
+  border-radius: 35px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  color: #fff;
+}
+
+.form-box .form .login-container .input-button .input-field::-moz-placeholder, .form-box .form .register-container .input-button .input-field::-moz-placeholder {
+  color: #fff;
+}
+
+.form-box .form .login-container .input-button .input-field::placeholder,
+.form-box .form .register-container .input-button .input-field::placeholder {
+  color: #fff;
+}
+
+.form-box .form .login-container .input-button .input-field:hover,
+.form-box .form .login-container .input-button .input-field:focus,
+.form-box .form .register-container .input-button .input-field:hover,
+.form-box .form .register-container .input-button .input-field:focus {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.form-box .form .login-container .input-box .submit,
+.form-box .form .register-container .input-box .submit {
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  outline: none;
+  border-radius: 35px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-box .form .login-container .input-box .submit:hover,
+.form-box .form .register-container .input-box .submit:hover {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 7px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+.form-box .form .login-container .two-col,
+.form-box .form .register-container .two-col {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.form-box .form .login-container .two-col .one,
+.form-box .form .register-container .two-col .one {
+  display: flex;
+}
+
+.form-box .form .login-container .two-col .one label,
+.form-box .form .register-container .two-col .one label {
+  margin-left: 10px;
+}
+
+.form-box .form .login-container .two-col .two label,
+.form-box .form .register-container .two-col .two label {
+  cursor: pointer;
+}
+
+.form-box .form .login-container .two-col .two label a,
+.form-box .form .register-container .two-col .two label a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.form-box .form .login-container .two-col .two label a:hover,
+.form-box .form .register-container .two-col .two label a:hover {
+  text-decoration: underline;
+}
+
+.form-box .form .login-container {
+  left: 4px;
+}
+
+.form-box .form .register-container {
+  right: -520px;
+}
+
+@media only screen and (max-width: 786px) {
+  .nav-menu-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-menu-btn i {
+    font-size: 28px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+  }
+  .nav-menu-btn i:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  .menu-button {
+    display: none;
+  }
+}
+@media only screen and (max-width: 540px) {
+  nav {
+    padding: 0 20px;
+  }
+  .form {
+    width: 100%;
+    height: 500px;
+  }
+  .form .register-container,
+  .form .login-container {
+    width: 100%;
+    padding: 0 20px;
+  }
+  .two-forms {
+    flex-direction: column;
+    gap: 0;
+  }
+} 
+
+/*# sourceMappingURL=main.css.map */
