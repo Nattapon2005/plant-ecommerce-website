@@ -4,20 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping... </title>
+    <meta name="description" content="Planto - Premium indoor plants for your home. Browse our curated collection of trendy house plants, from Monstera to Snake Plants.">
+    <title>Planto. | Premium Indoor Plants</title>
     <link rel="stylesheet" href="src/public/css/home.css">
     <link rel="stylesheet" href="src/public/css/responsive.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- <div class="container">
-        <div class="box-show" id="showData">
-        </div>
+    <!-- Floating Leaf Particles -->
+    <div id="particles"></div>
 
-        <div class="product" id="productsCon"></div>
-    </div> -->
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="🔍 Search plants...">
+                <button class="search-close-btn" id="search-close">
+                    <i class='bx bx-x'></i>
+                </button>
+            </div>
+            <p class="search-hint">Press ESC to close</p>
+        </div>
+    </div>
 
     <!-- header -->
 
@@ -26,7 +40,7 @@
             <div class="container">
                 <nav>
                     <div class="nav-logo">
-                        <img src="/imgs/plant1-1.png" alt="">
+                        <img src="imgs/plant1-1.png" alt="Planto Logo">
                         <h2>Planto.</h2>
                     </div>
                     <div class="nav-menus">
@@ -44,7 +58,7 @@
 
                     <div class="nav-items">
                         <div class="nav-con-item">
-                            <div class="nav-item-icon">
+                            <div class="nav-item-icon" id="search-icon">
                                 <i class='bx bx-search'></i>
                             </div>
                             <div class="nav-item-icon shopping-cart-icon" onclick="toggleCart()">
@@ -64,7 +78,10 @@
         </div>
     </header>
 
-    <!-- product shopping -->
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" onclick="closeCart()"></div>
+
+    <!-- product shopping cart sidebar -->
 
     <section class="nav-product">
 
@@ -78,165 +95,8 @@
 
             <div class="scroll">
                 <div class="nav-product-con">
-
                     <div class="show-product" id="show-product">
-
-
-                        <!-- <div class="show-product-data">
-                            <div class="shoe-product-title">
-                                <img src="images/1.png" alt="">
-                                <div class="show-choose">
-                                    <div class="show-data-choose">
-                                        <span>Product Name</span>
-                                        <p>price : 359</p>
-                                        <div class="end-show">
-                                            <p>
-                                                Delete
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="number-product">
-                                <div class="number-product-choose">
-                                    <input type="number" min="1" value="1">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="show-product-data">
-                            <div class="shoe-product-title">
-                                <img src="images/1.png" alt="">
-                                <div class="show-choose">
-                                    <div class="show-data-choose">
-                                        <span>Product Name</span>
-                                        <p>price : 359</p>
-                                        <div class="end-show">
-                                            <p>
-                                                Delete
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="number-product">
-                                <div class="number-product-choose">
-                                    <input type="number" min="1" value="1">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="show-product-data">
-                            <div class="shoe-product-title">
-                                <img src="images/1.png" alt="">
-                                <div class="show-choose">
-                                    <div class="show-data-choose">
-                                        <span>Product Name</span>
-                                        <p>price : 359</p>
-                                        <div class="end-show">
-                                            <p>
-                                                Delete
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="number-product">
-                                <div class="number-product-choose">
-                                    <input type="number" min="1" value="1">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="show-product-data">
-                            <div class="shoe-product-title">
-                                <img src="images/1.png" alt="">
-                                <div class="show-choose">
-                                    <div class="show-data-choose">
-                                        <span>Product Name</span>
-                                        <p>price : 359</p>
-                                        <div class="end-show">
-                                            <p>
-                                                Delete
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="number-product">
-                                <div class="number-product-choose">
-                                    <input type="number" min="1" value="1">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="show-product-data">
-                            <div class="shoe-product-title">
-                                <img src="images/1.png" alt="">
-                                <div class="show-choose">
-                                    <div class="show-data-choose">
-                                        <span>Product Name</span>
-                                        <p>price : 359</p>
-                                        <div class="end-show">
-                                            <p>
-                                                Delete
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="number-product">
-                                <div class="number-product-choose">
-                                    <input type="number" min="1" value="1">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="show-product-data">
-                            <div class="shoe-product-title">
-                                <img src="images/1.png" alt="">
-                                <div class="show-choose">
-                                    <div class="show-data-choose">
-                                        <span>Product Name</span>
-                                        <p>price : 359</p>
-                                        <div class="end-show">
-                                            <p>
-                                                Delete
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="number-product">
-                                <div class="number-product-choose">
-                                    <input type="number" min="1" value="1">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="show-product-data">
-                            <div class="shoe-product-title">
-                                <img src="images/1.png" alt="">
-                                <div class="show-choose">
-                                    <div class="show-data-choose">
-                                        <span>Product Name</span>
-                                        <p>price : 359</p>
-                                        <div class="end-show">
-                                            <p>
-                                                Delete
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="number-product">
-                                <div class="number-product-choose">
-                                    <input type="number" min="1" value="1">
-                                </div>
-                            </div>
-                        </div> -->
-
-
+                        <!-- Cart items rendered dynamically by JS -->
                     </div>
                 </div>
             </div>
@@ -249,7 +109,7 @@
     </section>
 
 
-    <!-- breath-natureal -->
+    <!-- breath-natureal hero section -->
 
     <div class="breath-natureal">
         <div class="container">
@@ -279,9 +139,9 @@
 
                     <div class="box-left-review">
                         <div class="box-review-img">
-                            <img src="/imgs/aiony-haust-3TLl_97HNJo-unsplash.jpg" alt="">
+                            <img src="imgs/aiony-haust-3TLl_97HNJo-unsplash.jpg" alt="Customer Review">
                             <div class="box-title">
-                                <h3>alena Patel</h3>
+                                <h3>Alena Patel</h3>
                                 <div class="stars">★ ★ ★ ★ ☆</div>
                             </div>
                         </div>
@@ -296,7 +156,7 @@
                     <div class="box-contant">
                         <div class="box-padding">
                             <div class="box-img-right">
-                                <img src="/images/1.png" alt="">
+                                <img src="images/1.png" alt="Calathea Plant">
                             </div>
                             <div class="box-contant-right">
                                 <p>
@@ -316,9 +176,6 @@
                                     <span></span>
                                     <span class="white"></span>
                                     <span></span>
-                                    <!-- <i class='bx bx-wifi-0'></i>
-                                    <i class='white bx bx-wifi-0'></i>
-                                    <i class='bx bx-wifi-0'></i> -->
                                 </div>
 
                             </div>
@@ -347,26 +204,26 @@
             <div class="our-trendy-plants-items">
                 <div class="our-trendy-plants-items-product">
                     <div class="item-product-img">
-                        <img class="item-img" src="/images/2.png" alt="">
+                        <img class="item-img" src="images/2.png" alt="Plant">
                     </div>
 
                     <div class="item-product-title">
                         <div class="item-product-con">
                             <h2>
-                                For Small Decs Ai Plat
+                                Monstera Deliciosa
                             </h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua
                             </p>
                             <h3>
-                                Rs. 599/-
+                                Rs. 499/-
                             </h3>
                             <div class="item-product-btn-button">
                                 <button>
                                     Explore
                                 </button>
-                                <div class="item-product-btn-icon">
+                                <div class="item-product-btn-icon" onclick="addToCart(2)" style="cursor: pointer;">
                                     <i class='bx bx-shopping-bag'></i>
                                 </div>
                             </div>
@@ -382,20 +239,20 @@
                     <div class="item-product-title">
                         <div class="item-product-con">
                             <h2>
-                                For Small Decs Ai Plat
+                                Bird of Paradise
                             </h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua
                             </p>
                             <h3>
-                                Rs. 599/-
+                                Rs. 699/-
                             </h3>
                             <div class="item-product-btn-button">
                                 <button>
                                     Explore
                                 </button>
-                                <div class="item-product-btn-icon">
+                                <div class="item-product-btn-icon" onclick="addToCart(7)" style="cursor: pointer;">
                                     <i class='bx bx-shopping-bag'></i>
                                 </div>
                             </div>
@@ -403,7 +260,7 @@
                     </div>
 
                     <div class="item-product-img">
-                        <img class="item-img img2" src="/images/7.png" alt="">
+                        <img class="item-img img2" src="images/7.png" alt="Plant">
                     </div>
 
                 </div>
@@ -422,167 +279,13 @@
             <div class="our-con">
                 <div class="our-trendy-plants-header">
                     <span class="corner left"></span>
-                    <h1>Our Trendy plants</h1>
+                    <h1>Our Top Selling</h1>
                     <span class="corner right"></span>
                 </div>
             </div>
 
             <div id="productsCon" class="our-top-selling-products">
-
-                <!-- <div class="product-moves">
-                    <div class="product-top">
-                        <img src="/images/1.png" alt="">
-                    </div>
-                    <div class="product-tile">
-                        <h2>
-                            For Small Decs Ai Plat
-                        </h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </p>
-                        <div class="item-product-btn-button">
-                            <h3>
-                                Rs. 359/-
-                            </h3>
-                            <div class="item-product-btn-icon">
-                                <i class='bx bx-shopping-bag'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-moves">
-                    <div class="product-top">
-                        <img src="/images/2.png" alt="">
-                    </div>
-                    <div class="product-tile">
-                        <h2>
-                            For Small Decs Ai Plat
-                        </h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </p>
-                        <div class="item-product-btn-button">
-                            <h3>
-                                Rs. 359/-
-                            </h3>
-                            <div class="item-product-btn-icon">
-                                <i class='bx bx-shopping-bag'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-moves">
-                    <div class="product-top">
-                        <img src="/images/3.png" alt="">
-                    </div>
-                    <div class="product-tile">
-                        <h2>
-                            For Small Decs Ai Plat
-                        </h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </p>
-                        <div class="item-product-btn-button">
-                            <h3>
-                                Rs. 359/-
-                            </h3>
-                            <div class="item-product-btn-icon">
-                                <i class='bx bx-shopping-bag'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-moves">
-                    <div class="product-top">
-                        <img src="/images/4.png" alt="">
-                    </div>
-                    <div class="product-tile">
-                        <h2>
-                            For Small Decs Ai Plat
-                        </h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </p>
-                        <div class="item-product-btn-button">
-                            <h3>
-                                Rs. 359/-
-                            </h3>
-                            <div class="item-product-btn-icon">
-                                <i class='bx bx-shopping-bag'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-moves">
-                    <div class="product-top">
-                        <img src="/images/5.png" alt="">
-                    </div>
-                    <div class="product-tile">
-                        <h2>
-                            For Small Decs Ai Plat
-                        </h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </p>
-                        <div class="item-product-btn-button">
-                            <h3>
-                                Rs. 359/-
-                            </h3>
-                            <div class="item-product-btn-icon">
-                                <i class='bx bx-shopping-bag'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-moves">
-                    <div class="product-top">
-                        <img src="/images/6.png" alt="">
-                    </div>
-                    <div class="product-tile">
-                        <h2>
-                            For Small Decs Ai Plat
-                        </h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </p>
-                        <div class="item-product-btn-button">
-                            <h3>
-                                Rs. 359/-
-                            </h3>
-                            <div class="item-product-btn-icon">
-                                <i class='bx bx-shopping-bag'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-moves">
-                    <div class="product-top">
-                        <img src="/images/7.png" alt="">
-                    </div>
-                    <div class="product-tile">
-                        <h2>
-                            For Small Decs Ai Plat
-                        </h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </p>
-                        <div class="item-product-btn-button">
-                            <h3>
-                                Rs. 359/-
-                            </h3>
-                            <div class="item-product-btn-icon">
-                                <i class='bx bx-shopping-bag'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
+                <!-- Products rendered dynamically by JS -->
             </div>
 
         </div>
@@ -598,7 +301,7 @@
             <div class="our-con">
                 <div class="our-trendy-plants-header">
                     <span class="corner left"></span>
-                    <h1>Our Trendy plants</h1>
+                    <h1>Customer Reviews</h1>
                     <span class="corner right"></span>
                 </div>
             </div>
@@ -608,9 +311,9 @@
                 <div class="customer-review-products">
                     <div class="review-products">
                         <div class="review-products-img">
-                            <img src="/imgs/review1.jpg" alt="">
+                            <img src="imgs/review1.jpg" alt="Reviewer">
                             <div class="box-title">
-                                <h3>alena Patel</h3>
+                                <h3>Alena Patel</h3>
                                 <div class="stars">★ ★ ★ ★ ☆</div>
                             </div>
                         </div>
@@ -624,10 +327,10 @@
                 <div class="customer-review-products">
                     <div class="review-products">
                         <div class="review-products-img">
-                            <img src="/imgs/review2.jpg" alt="">
+                            <img src="imgs/review2.jpg" alt="Reviewer">
                             <div class="box-title">
-                                <h3>alena Patel</h3>
-                                <div class="stars">★ ★ ★ ★ ☆</div>
+                                <h3>James Wilson</h3>
+                                <div class="stars">★ ★ ★ ★ ★</div>
                             </div>
                         </div>
                         <p>
@@ -640,9 +343,9 @@
                 <div class="customer-review-products">
                     <div class="review-products">
                         <div class="review-products-img">
-                            <img src="/imgs/review3.jpg" alt="">
+                            <img src="imgs/review3.jpg" alt="Reviewer">
                             <div class="box-title">
-                                <h3>alena Patel</h3>
+                                <h3>Sophie Chen</h3>
                                 <div class="stars">★ ★ ★ ★ ☆</div>
                             </div>
                         </div>
@@ -667,19 +370,19 @@
             <div class="our-con">
                 <div class="our-trendy-plants-header">
                     <span class="corner left"></span>
-                    <h1>Our Trendy plants</h1>
+                    <h1>Our Best O2 Plants</h1>
                     <span class="corner right"></span>
                 </div>
             </div>
 
             <div class="our-best-o2-con">
                 <div class="our-best-o2-img">
-                    <img src="/images/1.png" alt="">
+                    <img src="images/1.png" alt="O2 Plant">
                 </div>
 
                 <div class="our-best-o2-title">
                     <h2>
-                        We Have Small And Best O2 Plants Collection’s
+                        We Have Small And Best O2 Plants Collection's
                     </h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -719,7 +422,7 @@
 
                 <div class="footer-logo">
                     <div class="footer-logo-img">
-                        <img src="/imgs/plant1-1.png" alt="">
+                        <img src="imgs/plant1-1.png" alt="Planto Logo">
                         <h1>Planto.</h1>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -739,14 +442,14 @@
 
                 <div class="footer-menu one">
                     <h2>
-                        Quick Link’s
+                        Quick Link's
                     </h2>
                     <div class="menu-footer">
                         <p>
                             Home
                         </p>
                         <p>
-                            Type’s Of plant’s
+                            Type's Of plant's
                         </p>
                         <p>
                             Contact
@@ -781,7 +484,13 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+        <i class='bx bx-chevron-up'></i>
+    </button>
+
     <script src="home.js"></script>
+
 
 </body>
 

@@ -1,44 +1,51 @@
 [
     {
         "id": 1,
-        "name": " Calathea plant",
+        "name": "Calathea Orbifolia",
         "price": 359,
-        "image": "images/1.png"
+        "image": "images/1.png",
+        "description": "Beautiful prayer plant with round silvery-green leaves"
     },
     {
         "id": 2,
-        "name": " Calathea plant",
-        "price": 359,
-        "image": "images/2.png"
+        "name": "Monstera Deliciosa",
+        "price": 499,
+        "image": "images/2.png",
+        "description": "Iconic tropical plant with stunning split leaves"
     },
     {
         "id": 3,
-        "name": " Calathea plant",
-        "price": 359,
-        "image": "images/3.png"
+        "name": "Snake Plant",
+        "price": 299,
+        "image": "images/3.png",
+        "description": "Hardy air-purifying plant perfect for beginners"
     },
     {
         "id": 4,
-        "name": " Calathea plant",
-        "price": 359,
-        "image": "images/4.png"
+        "name": "Fiddle Leaf Fig",
+        "price": 599,
+        "image": "images/4.png",
+        "description": "Elegant statement plant with large violin-shaped leaves"
     },
     {
         "id": 5,
-        "name": " Calathea plant",
-        "price": 359,
-        "image": "images/5.png"
+        "name": "Peace Lily",
+        "price": 249,
+        "image": "images/5.png",
+        "description": "Graceful white flowering indoor plant"
     },
     {
         "id": 6,
-        "name": " Calathea plant",
-        "price": 359,
-        "image": "images/6.png"
+        "name": "Pothos Golden",
+        "price": 199,
+        "image": "images/6.png",
+        "description": "Easy-care trailing vine with golden-green leaves"
     },
     {
         "id": 7,
-        "name": " Calathea plant",
-        "price": 359,
-        "image": "images/7.png"
+        "name": "Bird of Paradise",
+        "price": 699,
+        "image": "images/7.png",
+        "description": "Dramatic tropical plant that makes a bold statement"
     }
 ]
