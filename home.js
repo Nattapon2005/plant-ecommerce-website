@@ -542,12 +542,17 @@ document
     });
 
 function updateParallax() {
+    // ปิด Parallax บนมือถือเพื่อกำจัดอาการกระตุก 100% (ป้องกัน Layout Thrashing)
+    if (window.innerWidth <= 768) return;
+
+    const vh = window.innerHeight;
     parallaxItems.forEach(({ el, wrapper, speed }) => {
         if (!el || !wrapper) return;
         const rect = wrapper.getBoundingClientRect();
-        const offset =
-            (window.innerHeight / 2 - (rect.top + rect.height / 2)) * speed;
-        const clamped = Math.max(-70, Math.min(70, offset));
+        // คำนวณเฉพาะตอนที่รูปใกล้เข้ามาในจอภาพ
+        if (rect.bottom < -100 || rect.top > vh + 100) return;
+        const offset = (vh / 2 - (rect.top + rect.height / 2)) * speed;
+        const clamped = Math.max(-60, Math.min(60, offset));
         el.style.setProperty("--py", `${clamped.toFixed(1)}px`);
     });
 }
@@ -614,10 +619,53 @@ function closeCart() {
     if (overlay) overlay.classList.remove("active");
 }
 
-function toggleMenu() {
-    document
-        .querySelector(".nav-menus")
-        .classList.toggle("nav-menus-active");
+function toggleMenu(forceClose = false) {
+    const navMenus = document.querySelector(".nav-menus");
+    const menuIcon = document.querySelector(".responsive-menu i");
+    if (!navMenus) return;
+
+    if (forceClose) {
+        navMenus.classList.remove("nav-menus-active");
+        if (menuIcon) {
+            menuIcon.classList.remove("bx-x");
+            menuIcon.classList.add("bx-menu");
+        }
+        document.body.classList.remove("mobile-menu-open");
+        return;
+    }
+
+    const isActive = navMenus.classList.toggle("nav-menus-active");
+    if (menuIcon) {
+        if (isActive) {
+            menuIcon.classList.remove("bx-menu");
+            menuIcon.classList.add("bx-x");
+        } else {
+            menuIcon.classList.remove("bx-x");
+            menuIcon.classList.add("bx-menu");
+        }
+    }
+    document.body.classList.toggle("mobile-menu-open", isActive);
+}
+
+// ปิด mobile menu อัตโนมัติเมื่อกดคลิกลิงก์ใดๆ ในเมนู
+document.querySelectorAll(".nav-menus a").forEach((link) => {
+    link.addEventListener("click", () => {
+        if (window.innerWidth <= 900) {
+            toggleMenu(true);
+        }
+    });
+});
+
+// รองรับการคลิกหัวข้อ Plants Type บนมือถือเพื่อยืด/หดเมนูย่อย
+const dropdownTrigger = document.querySelector(".has-dropdown > a");
+if (dropdownTrigger) {
+    dropdownTrigger.addEventListener("click", (e) => {
+        if (window.innerWidth <= 900) {
+            e.preventDefault();
+            const parent = dropdownTrigger.closest(".has-dropdown");
+            if (parent) parent.classList.toggle("dropdown-open");
+        }
+    });
 }
 
 // ===================================================

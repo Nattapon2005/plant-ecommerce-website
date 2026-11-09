@@ -55,14 +55,12 @@ nav {
   padding: 0 150px;
   background: linear-gradient(rgba(39, 39, 39, 0.6), transparent);
 }
-
 nav .logo h1 {
   color: #fff;
   text-transform: uppercase;
   font-size: 25px;
   font-weight: 600;
 }
-
 nav .menu-button .btn {
   padding: 12px 40px;
   background: rgba(255, 255, 255, 0.4);
@@ -73,15 +71,12 @@ nav .menu-button .btn {
   margin-left: 20px;
   cursor: pointer;
 }
-
 nav .menu-button .btn.white-btn {
   background: rgba(255, 255, 255, 0.7);
 }
-
 nav .menu-button .btn:hover {
   background: rgba(255, 255, 255, 0.3);
 }
-
 nav .nav-menu-btn {
   display: none;
 }
@@ -101,7 +96,6 @@ nav .nav-menu-btn {
   color: #fff;
   z-index: 2;
 }
-
 .form-box .form {
   width: 100%;
   height: 100%;
@@ -110,7 +104,6 @@ nav .nav-menu-btn {
   align-items: center;
   /* background-color: blue; */
 }
-
 .form-box .form .login-container,
 .form-box .form .register-container {
   position: absolute;
@@ -118,32 +111,27 @@ nav .nav-menu-btn {
   /* background-color: blueviolet; */
   transition: 0.5s ease-in-out;
 }
-
 .form-box .form .login-container .form-con p a,
 .form-box .form .register-container .form-con p a {
   margin-left: 7px;
   color: #fff;
 }
-
 .form-box .form .login-container .form-con h1,
 .form-box .form .register-container .form-con h1 {
   font-weight: 600;
   margin-top: 30px;
   margin-bottom: 30px;
 }
-
 .form-box .form .login-container .two-forms,
 .form-box .form .register-container .two-forms {
   display: flex;
   gap: 10px;
 }
-
 .form-box .form .login-container .input-button,
 .form-box .form .register-container .input-button {
   position: relative;
   width: 100%;
 }
-
 .form-box .form .login-container .input-button i,
 .form-box .form .register-container .input-button i {
   position: absolute;
@@ -151,7 +139,6 @@ nav .nav-menu-btn {
   right: 20px;
   color: #000;
 }
-
 .form-box .form .login-container .input-button .input-field,
 .form-box .form .register-container .input-button .input-field {
   width: 100%;
@@ -168,23 +155,16 @@ nav .nav-menu-btn {
   font-size: 14px;
   color: #fff;
 }
-
-.form-box .form .login-container .input-button .input-field::-moz-placeholder, .form-box .form .register-container .input-button .input-field::-moz-placeholder {
-  color: #fff;
-}
-
 .form-box .form .login-container .input-button .input-field::placeholder,
 .form-box .form .register-container .input-button .input-field::placeholder {
   color: #fff;
 }
-
 .form-box .form .login-container .input-button .input-field:hover,
 .form-box .form .login-container .input-button .input-field:focus,
 .form-box .form .register-container .input-button .input-field:hover,
 .form-box .form .register-container .input-button .input-field:focus {
   background: rgba(255, 255, 255, 0.25);
 }
-
 .form-box .form .login-container .input-box .submit,
 .form-box .form .register-container .input-box .submit {
   width: 100%;
@@ -195,50 +175,41 @@ nav .nav-menu-btn {
   font-weight: 600;
   cursor: pointer;
 }
-
 .form-box .form .login-container .input-box .submit:hover,
 .form-box .form .register-container .input-box .submit:hover {
   background: rgba(255, 255, 255, 0.5);
   box-shadow: 1px 7px 7px 1px rgba(0, 0, 0, 0.2);
 }
-
 .form-box .form .login-container .two-col,
 .form-box .form .register-container .two-col {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
-
 .form-box .form .login-container .two-col .one,
 .form-box .form .register-container .two-col .one {
   display: flex;
 }
-
 .form-box .form .login-container .two-col .one label,
 .form-box .form .register-container .two-col .one label {
   margin-left: 10px;
 }
-
 .form-box .form .login-container .two-col .two label,
 .form-box .form .register-container .two-col .two label {
   cursor: pointer;
 }
-
 .form-box .form .login-container .two-col .two label a,
 .form-box .form .register-container .two-col .two label a {
   text-decoration: none;
   color: #fff;
 }
-
 .form-box .form .login-container .two-col .two label a:hover,
 .form-box .form .register-container .two-col .two label a:hover {
   text-decoration: underline;
 }
-
 .form-box .form .login-container {
   left: 4px;
 }
-
 .form-box .form .register-container {
   right: -520px;
 }
@@ -285,6 +256,6 @@ nav .nav-menu-btn {
     flex-direction: column;
     gap: 0;
   }
-} 
+}
 
 /*# sourceMappingURL=main.css.map */
