@@ -71,7 +71,8 @@ async function loadProducts() {
 
     // 1. พยายามดึงจาก SQLite Backend API (http://localhost:5000/api/products)
     try {
-        const apiUrl = window.location.origin.includes("5000")
+        // ใช้ relative path "/api/products" เพื่อให้ทำงานได้ทั้งบน localhost:5000 และ Vercel
+        const apiUrl = window.location.protocol.startsWith("http")
             ? "/api/products"
             : "http://localhost:5000/api/products";
 

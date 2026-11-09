@@ -2,7 +2,6 @@
   "name": "projectend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
   "scripts": {
     "start": "node server.js",
     "init-db": "node init-db.js",
@@ -12,9 +11,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "node-sass": "^9.0.0"
-  },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
