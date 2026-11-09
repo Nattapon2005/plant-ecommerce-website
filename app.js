@@ -37,11 +37,11 @@ function loginFunction(event) {
     console.log("Password:", password);  // แสดงค่าของฟิลด์ password
 
 
-       // ดึงข้อมูลผู้ใช้จาก localStorage
+    // ดึงข้อมูลผู้ใช้จาก localStorage
     const storedUser = JSON.parse(localStorage.getItem(email));  // ใช้ email เป็น key
     // จะต้องเก็บข้อมูลเป็น JSON string ดังนั้นจะต้องแปลงข้อมูลจาก JSON.parse() เพื่อใช้กับรหัสผ่านที่เก็บไว้ใน localStorage
 
-     // ตรวจสอบว่ารหัสผ่านที่กรอกตรงกับรหัสผ่านที่เก็บใน localStorage หรือไม่
+    // ตรวจสอบว่ารหัสผ่านที่กรอกตรงกับรหัสผ่านที่เก็บใน localStorage หรือไม่
     if (storedUser === password) {
         alert("เข้าสู่ระบบสำเร็จ!");
         document.body.innerHTML = `<h1 style="text-align:center">ยินดีต้อนรับ, ${username}!</h1><p style="text-align:center"><a href="#" onclick="location.reload()">ออกจากระบบ</a></p>`;
@@ -86,7 +86,7 @@ function registerFunction(event) {
 
     console.log(localStorage.getItem(firstName.value))
 
-     // ตรวจสอบว่า email หรือ firstName ถูกใช้แล้วหรือไม่
+    // ตรวจสอบว่า email หรือ firstName ถูกใช้แล้วหรือไม่
     if (localStorage.getItem(firstName.value)) {
         alert("ชื่อผู้ใช้นี้ถูกใช้แล้ว");
         console.log(firstName.value)
@@ -94,7 +94,7 @@ function registerFunction(event) {
     } else {
         // ซึ่งไม่ถูกต้อง เพราะ localStorage.setItem() รับเพียงแค่ 2 พารามิเตอร์: key และ value เท่านั้น และพารามิเตอร์ที่ใช้ก็ไม่ถูกต้อง
 
-         // เก็บข้อมูลผู้ใช้ใน localStorage โดยใช้ firstName เป็น key
+        // เก็บข้อมูลผู้ใช้ใน localStorage โดยใช้ firstName เป็น key
         localStorage.setItem(firstName.value, JSON.stringify({
             lastName: lastName.value,
             email: email.value,

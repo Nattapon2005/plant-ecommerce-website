@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "sass": "^1.87.0",
