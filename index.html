@@ -6,6 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Planto - Premium indoor plants for your home. Browse our curated collection of trendy house plants, from Monstera to Snake Plants.">
     <title>Planto. | Premium Indoor Plants</title>
+
+    <!-- Theme color ให้ address bar เข้ากับธีมเว็บ -->
+    <meta name="theme-color" content="#1a2315">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="imgs/plant1-1.png">
+
+    <!-- ================================================== -->
+    <!-- ✨ Open Graph (OG Tags) — พรีวิวสวย ๆ เวลาแชร์ลง     -->
+    <!--    Facebook / LINE / LinkedIn / Messenger           -->
+    <!--                                                     -->
+    <!-- ⚠️ TODO: ตอน deploy จริง เปลี่ยน planto.example.com   -->
+    <!--    เป็นโดเมนของเว็บ (ต้องเป็น absolute URL เท่านั้น)   -->
+    <!--    เช็กพรีวิวได้ที่                                   -->
+    <!--    https://developers.facebook.com/tools/debug/      -->
+    <!-- ================================================== -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Planto.">
+    <meta property="og:url" content="https://planto.example.com/">
+    <meta property="og:title" content="Planto. | Premium Indoor Plants">
+    <meta property="og:description" content="Bring nature home 🌿 Premium indoor plants — from Monstera to Bird of Paradise. Free delivery, care guides and a 30-day plant guarantee.">
+    <meta property="og:image" content="https://planto.example.com/images/1.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Calathea house plant — Planto premium indoor plant store">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ✨ Twitter / X Card — พรีวิวเวลาแชร์ลง X (Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Planto. | Premium Indoor Plants">
+    <meta name="twitter:description" content="Bring nature home 🌿 Premium indoor plants — from Monstera to Bird of Paradise. Free delivery and a 30-day plant guarantee.">
+    <meta name="twitter:image" content="https://planto.example.com/images/1.png">
+
     <link rel="stylesheet" href="src/public/css/home.css">
     <link rel="stylesheet" href="src/public/css/responsive.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -13,6 +45,18 @@
 </head>
 
 <body>
+
+    <!-- Page Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-leaf">🌱</div>
+            <div class="preloader-bar"><span></span></div>
+            <p>Growing your garden...</p>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
 
     <!-- Floating Leaf Particles -->
     <div id="particles"></div>
@@ -45,10 +89,18 @@
                     </div>
                     <div class="nav-menus">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#"> Plants Type </a> <i class='bx bx-chevron-down'></i> </li>
-                            <li><a href="#">More</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#home">Home</a></li>
+                            <li class="has-dropdown">
+                                <a href="#trendy"> Plants Type </a> <i class='bx bx-chevron-down'></i>
+                                <div class="dropdown-menu">
+                                    <a href="#trendy"><i class='bx bxs-leaf'></i> Monstera</a>
+                                    <a href="#top-selling"><i class='bx bxs-leaf'></i> Calathea</a>
+                                    <a href="#top-selling"><i class='bx bxs-leaf'></i> Bird of Paradise</a>
+                                    <a href="#top-selling"><i class='bx bxs-leaf'></i> Snake Plant</a>
+                                </div>
+                            </li>
+                            <li><a href="#reviews">More</a></li>
+                            <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
 
@@ -111,7 +163,7 @@
 
     <!-- breath-natureal hero section -->
 
-    <div class="breath-natureal">
+    <div class="breath-natureal" id="home">
         <div class="container">
 
             <div class="box-con">
@@ -142,11 +194,12 @@
                             <img src="imgs/aiony-haust-3TLl_97HNJo-unsplash.jpg" alt="Customer Review">
                             <div class="box-title">
                                 <h3>Alena Patel</h3>
-                                <div class="stars">★ ★ ★ ★ ☆</div>
+                                <p class="review-role"><i class='bx bxs-check-circle'></i> Verified Buyer</p>
+                                <div class="stars">★★★★☆</div>
                             </div>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...
+                            Fresh plants, lovely packaging and care guides that actually help. My shelf is a tiny jungle now!
                         </p>
                     </div>
 
@@ -187,10 +240,32 @@
         </div>
     </div>
 
+    <!-- Benefits Marquee (แถบข้อความวิ่งไม่รู้จบ) -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-group">
+                <span><i class='bx bxs-leaf'></i> 100% Fresh Plants</span>
+                <span><i class='bx bxs-truck'></i> Free Home Delivery</span>
+                <span><i class='bx bxs-droplet'></i> Easy Watering Guide</span>
+                <span><i class='bx bxs-purchase-tag-alt'></i> Best Price Guaranteed</span>
+                <span><i class='bx bxs-heart'></i> Loved by 12,000+ Customers</span>
+                <span><i class='bx bxs-shield'></i> 30-Day Plant Guarantee</span>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+                <span><i class='bx bxs-leaf'></i> 100% Fresh Plants</span>
+                <span><i class='bx bxs-truck'></i> Free Home Delivery</span>
+                <span><i class='bx bxs-droplet'></i> Easy Watering Guide</span>
+                <span><i class='bx bxs-purchase-tag-alt'></i> Best Price Guaranteed</span>
+                <span><i class='bx bxs-heart'></i> Loved by 12,000+ Customers</span>
+                <span><i class='bx bxs-shield'></i> 30-Day Plant Guarantee</span>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Our-Trendy-plants -->
 
-    <div class="Our-Trendy-plants">
+    <div class="Our-Trendy-plants" id="trendy">
         <div class="container">
 
             <div class="our-con">
@@ -223,7 +298,7 @@
                                 <button>
                                     Explore
                                 </button>
-                                <div class="item-product-btn-icon" onclick="addToCart(2)" style="cursor: pointer;">
+                                <div class="item-product-btn-icon" onclick="addToCart(2, this)" style="cursor: pointer;">
                                     <i class='bx bx-shopping-bag'></i>
                                 </div>
                             </div>
@@ -252,7 +327,7 @@
                                 <button>
                                     Explore
                                 </button>
-                                <div class="item-product-btn-icon" onclick="addToCart(7)" style="cursor: pointer;">
+                                <div class="item-product-btn-icon" onclick="addToCart(7, this)" style="cursor: pointer;">
                                     <i class='bx bx-shopping-bag'></i>
                                 </div>
                             </div>
@@ -273,7 +348,7 @@
 
     <!-- Our Top Selling -->
 
-    <div class="our-top-selling">
+    <div class="our-top-selling" id="top-selling">
         <div class="container">
 
             <div class="our-con">
@@ -295,7 +370,7 @@
 
     <!-- Customer Review -->
 
-    <div class="customer-review">
+    <div class="customer-review" id="reviews">
         <div class="container">
 
             <div class="our-con">
@@ -309,50 +384,77 @@
             <div class="customer-review-con">
 
                 <div class="customer-review-products">
+                    <div class="review-card-scanner"></div>
+                    <i class='bx bxs-quote-alt-right review-quote-icon'></i>
                     <div class="review-products">
                         <div class="review-products-img">
-                            <img src="imgs/review1.jpg" alt="Reviewer">
+                            <div class="avatar-wrapper">
+                                <img src="imgs/review1.jpg" alt="Alena Patel">
+                                <span class="avatar-ring"></span>
+                            </div>
                             <div class="box-title">
                                 <h3>Alena Patel</h3>
-                                <div class="stars">★ ★ ★ ★ ☆</div>
+                                <p class="review-role"><span class="pulse-status-dot"></span><i class='bx bxs-check-circle'></i> Verified Buyer</p>
+                                <div class="stars">★★★★★</div>
                             </div>
                         </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        <p class="review-text">
+                            "My Monstera arrived bigger than expected — packed like treasure and still thriving three months later. This is my favourite green corner of the internet."
                         </p>
+                        <div class="review-footer">
+                            <span class="review-item-tag"><i class='bx bxs-leaf'></i> Monstera Deliciosa</span>
+                            <span class="review-date"><i class='bx bx-time-five'></i> 3 days ago</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="customer-review-products">
+                    <div class="review-card-scanner"></div>
+                    <i class='bx bxs-quote-alt-right review-quote-icon'></i>
                     <div class="review-products">
                         <div class="review-products-img">
-                            <img src="imgs/review2.jpg" alt="Reviewer">
+                            <div class="avatar-wrapper">
+                                <img src="imgs/review2.jpg" alt="James Wilson">
+                                <span class="avatar-ring"></span>
+                            </div>
                             <div class="box-title">
                                 <h3>James Wilson</h3>
-                                <div class="stars">★ ★ ★ ★ ★</div>
+                                <p class="review-role"><span class="pulse-status-dot"></span><i class='bx bxs-check-circle'></i> Verified Buyer</p>
+                                <div class="stars">★★★★★</div>
                             </div>
                         </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        <p class="review-text">
+                            "Ordered a Bird of Paradise as a birthday gift and it stole the show. Fresh, healthy and the care guide made it easy to keep alive. Highly recommended!"
                         </p>
+                        <div class="review-footer">
+                            <span class="review-item-tag"><i class='bx bxs-leaf'></i> Bird of Paradise</span>
+                            <span class="review-date"><i class='bx bx-time-five'></i> 1 week ago</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="customer-review-products">
+                    <div class="review-card-scanner"></div>
+                    <i class='bx bxs-quote-alt-right review-quote-icon'></i>
                     <div class="review-products">
                         <div class="review-products-img">
-                            <img src="imgs/review3.jpg" alt="Reviewer">
+                            <div class="avatar-wrapper">
+                                <img src="imgs/review3.jpg" alt="Sophie Chen">
+                                <span class="avatar-ring"></span>
+                            </div>
                             <div class="box-title">
                                 <h3>Sophie Chen</h3>
-                                <div class="stars">★ ★ ★ ★ ☆</div>
+                                <p class="review-role"><span class="pulse-status-dot"></span><i class='bx bxs-check-circle'></i> Verified Buyer</p>
+                                <div class="stars">★★★★★</div>
                             </div>
                         </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        <p class="review-text">
+                            "Beautiful healthy plants, fast delivery and lovely packaging. My whole shelf has turned into a tiny jungle — will definitely order again."
                         </p>
+                        <div class="review-footer">
+                            <span class="review-item-tag"><i class='bx bxs-leaf'></i> Calathea Plant</span>
+                            <span class="review-date"><i class='bx bx-time-five'></i> 2 weeks ago</span>
+                        </div>
                     </div>
                 </div>
 
@@ -415,7 +517,7 @@
     </div>
 
 
-    <footer>
+    <footer id="contact">
         <div class="container">
 
             <div class="footer-con">
@@ -465,8 +567,8 @@
 
                     <div class="footer-menu-text-end">
                         <div class="footer-text">
-                            <input type="email" placeholder="Enter Email">
-                            <button>
+                            <input type="email" id="newsletter-input" placeholder="Enter Email">
+                            <button id="newsletter-btn" type="button">
                                 Subscribe
                             </button>
                         </div>

@@ -4,10 +4,13 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+// Serve static frontend files (HTML, CSS, JS, Images)
+app.use(express.static(__dirname));
 
 // Open SQLite database
 const db = new sqlite3.Database('database.sqlite', sqlite3.OPEN_READONLY, (err) => {

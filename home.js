@@ -67,18 +67,98 @@ async function loadProducts() {
         productCon.appendChild(skeleton);
     }
 
-    try {
-        const response = await fetch("http://localhost:5000/api/products");
-        const data = await response.json();
-        allProducts = data;
+    let data = null;
 
-        // Small delay to show skeleton effect
-        setTimeout(() => showData(data), 600);
-    } catch (error) {
-        productCon.innerHTML =
-            '<p class="error-msg">เกิดข้อผิดพลาดในการโหลดสินค้า</p>';
-        console.error("Failed to load products:", error);
+    // 1. พยายามดึงจาก SQLite Backend API (http://localhost:5000/api/products)
+    try {
+        const apiUrl = window.location.origin.includes("5000")
+            ? "/api/products"
+            : "http://localhost:5000/api/products";
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1200);
+
+        const response = await fetch(apiUrl, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+            data = await response.json();
+            console.log("🌿 Loaded products from SQLite database API (port 5000)");
+        }
+    } catch (apiErr) {
+        console.warn("Backend server (server.js) is not running on port 5000, checking fallback...");
     }
+
+    // 2. ถ้าเซิร์ฟเวอร์ยังไม่ได้เปิด ให้ดึงข้อมูลสำรองจาก product.json
+    if (!data || data.length === 0) {
+        try {
+            const jsonResp = await fetch("product.json");
+            if (jsonResp.ok) {
+                data = await jsonResp.json();
+                console.log("🌿 Loaded products from product.json fallback");
+            }
+        } catch (jsonErr) {
+            console.warn("product.json fetch failed, using internal dataset");
+        }
+    }
+
+    // 3. Fallback อัตโนมัติป้องกันเคสเปิดตรงๆ ด้วย file:/// บนบราวเซอร์
+    if (!data || data.length === 0) {
+        data = [
+            {
+                id: 1,
+                name: "Calathea Orbifolia",
+                price: 359,
+                image: "images/1.png",
+                description: "Beautiful prayer plant with round silvery-green leaves"
+            },
+            {
+                id: 2,
+                name: "Monstera Deliciosa",
+                price: 499,
+                image: "images/2.png",
+                description: "Iconic tropical plant with stunning split leaves"
+            },
+            {
+                id: 3,
+                name: "Snake Plant",
+                price: 299,
+                image: "images/3.png",
+                description: "Hardy air-purifying plant perfect for beginners"
+            },
+            {
+                id: 4,
+                name: "Fiddle Leaf Fig",
+                price: 599,
+                image: "images/4.png",
+                description: "Elegant statement plant with large violin-shaped leaves"
+            },
+            {
+                id: 5,
+                name: "Peace Lily",
+                price: 249,
+                image: "images/5.png",
+                description: "Graceful white flowering indoor plant"
+            },
+            {
+                id: 6,
+                name: "Pothos Golden",
+                price: 199,
+                image: "images/6.png",
+                description: "Easy-care trailing vine with golden-green leaves"
+            },
+            {
+                id: 7,
+                name: "Bird of Paradise",
+                price: 699,
+                image: "images/7.png",
+                description: "Dramatic tropical plant that makes a bold statement"
+            }
+        ];
+    }
+
+    allProducts = data;
+    setTimeout(() => showData(data), 350);
 }
 
 function showData(data) {
@@ -93,7 +173,7 @@ function showData(data) {
     data.forEach((product, index) => {
         const cardDiv = document.createElement("div");
         cardDiv.className = "product-moves scroll-reveal";
-        cardDiv.style.animationDelay = `${index * 0.08}s`;
+        cardDiv.style.transitionDelay = `${index * 0.08}s`;
 
         const isWished = wishlist.has(product.id);
 
@@ -101,7 +181,7 @@ function showData(data) {
             <div class="product-top">
                 <img src="${product.image}" alt="${product.name}">
             </div>
-            <div class="wishlist-btn ${isWished ? "active" : ""}" data-id="${product.id}">
+            <div class="wishlist-btn ${isWished ? "active" : ""}" data-id="${product.id}" title="Wishlist">
                 <i class='bx ${isWished ? "bxs-heart" : "bx-heart"}'></i>
             </div>
             <div class="product-tile">
@@ -109,7 +189,7 @@ function showData(data) {
                 <p>${product.description || "Premium quality indoor plant"}</p>
                 <div class="item-product-btn-button">
                     <h3>Rs. ${product.price}/-</h3>
-                    <div class="item-product-btn-icon add-to-cart-btn" data-id="${product.id}">
+                    <div class="item-product-btn-icon add-to-cart-btn" data-id="${product.id}" title="Add to Cart">
                         <i class='bx bx-shopping-bag'></i>
                     </div>
                 </div>
@@ -118,17 +198,23 @@ function showData(data) {
 
         // Add to cart — ใช้ addEventListener แทน inline onclick เพื่อป้องกันบัค
         const cartBtn = cardDiv.querySelector(".add-to-cart-btn");
-        cartBtn.addEventListener("click", function () {
-            addToCart(product);
-            this.classList.add("cart-btn-animate");
-            setTimeout(() => this.classList.remove("cart-btn-animate"), 600);
-        });
+        if (cartBtn) {
+            cartBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                addToCart(product, this);
+                this.classList.add("cart-btn-animate");
+                setTimeout(() => this.classList.remove("cart-btn-animate"), 600);
+            });
+        }
 
         // Wishlist toggle
         const wishBtn = cardDiv.querySelector(".wishlist-btn");
-        wishBtn.addEventListener("click", function () {
-            toggleWishlist(product.id, this);
-        });
+        if (wishBtn) {
+            wishBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                toggleWishlist(product.id, this);
+            });
+        }
 
         productCon.appendChild(cardDiv);
     });
@@ -140,7 +226,7 @@ function showData(data) {
 // ===================================================
 // Cart System
 // ===================================================
-function addToCart(productOrId) {
+function addToCart(productOrId, fromEl = null) {
     let product;
     if (typeof productOrId === 'object') {
         product = productOrId;
@@ -167,7 +253,57 @@ function addToCart(productOrId) {
         setTimeout(() => badge.classList.remove("badge-bounce"), 600);
     }
 
+    // ✈️ ภาพสินค้าบินเข้าตะกร้า
+    if (fromEl) flyToCart(product.image, fromEl);
+
     showToast(`${product.name} เพิ่มลงตะกร้าแล้ว!`, "success");
+}
+
+// ===================================================
+// Fly-to-Cart Animation — ภาพสินค้าบินเข้าตะกร้า
+// ===================================================
+function flyToCart(imageSrc, sourceEl) {
+    try {
+        const cartIcon = document.querySelector(".shopping-cart-icon");
+        if (!cartIcon) return;
+
+        const cartRect = cartIcon.getBoundingClientRect();
+        const sourceImg = sourceEl
+            .closest(
+                ".product-moves, .our-trendy-plants-items-product, .box-contant"
+            )
+            ?.querySelector("img");
+        const startRect = (sourceImg || sourceEl).getBoundingClientRect();
+
+        const size = 60;
+        const startX = startRect.left + startRect.width / 2 - size / 2;
+        const startY = startRect.top + startRect.height / 2 - size / 2;
+
+        const ghost = document.createElement("img");
+        ghost.src = imageSrc;
+        ghost.className = "fly-plant-ghost";
+        ghost.style.left = `${startX}px`;
+        ghost.style.top = `${startY}px`;
+
+        // กันภาพเสียโชว์บนหน้าจอ
+        ghost.addEventListener("error", () => ghost.remove());
+        document.body.appendChild(ghost);
+
+        // Force reflow เพื่อให้เบราว์เซอร์จำตำแหน่งเริ่มต้นก่อน แล้วค่อย animate
+        void ghost.offsetWidth;
+
+        const dx =
+            cartRect.left + cartRect.width / 2 - (startX + size / 2);
+        const dy =
+            cartRect.top + cartRect.height / 2 - (startY + size / 2);
+
+        ghost.style.transform = `translate(${dx}px, ${dy}px) scale(0.15) rotate(30deg)`;
+        ghost.style.opacity = "0.1";
+
+        setTimeout(() => ghost.remove(), 900);
+    } catch (err) {
+        /* เงียบไว้ ไม่ให้ UI พังเพราะเอฟเฟกต์ */
+    }
 }
 
 function updateCart() {
@@ -325,6 +461,14 @@ function observeElements() {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("revealed");
+
+                    // เคลียร์ delay หลัง reveal เสร็จ เพื่อไม่ให้ hover transition ช้าลง
+                    const delay =
+                        parseFloat(getComputedStyle(entry.target).transitionDelay) * 1000 || 0;
+                    setTimeout(() => {
+                        entry.target.style.transitionDelay = "";
+                    }, delay + 900);
+
                     observer.unobserve(entry.target);
                 }
             });
@@ -340,35 +484,119 @@ function observeElements() {
 }
 
 // ===================================================
-// Header Scroll Behavior
+// Scroll Spy — ไฮไลต์ลิงก์ navbar ตาม section ที่กำลังดู
 // ===================================================
-const topHeader = document.querySelector(".top-header");
-let lastScrollY = window.scrollY;
+function initScrollSpy() {
+    const navLinks = document.querySelectorAll(".nav-menus ul li > a");
 
-window.addEventListener("scroll", () => {
-    if (window.scrollY > lastScrollY && window.scrollY > 100) {
-        topHeader.classList.add("hide");
-        topHeader.classList.remove("back-top-header");
-    } else {
-        topHeader.classList.remove("hide");
-        if (window.scrollY > 50) {
-            topHeader.classList.add("back-top-header");
-        } else {
-            topHeader.classList.remove("back-top-header");
-        }
+    const sections = [...navLinks]
+        .map((link) => {
+            const id = (link.getAttribute("href") || "").replace("#", "");
+            return id ? document.getElementById(id) : null;
+        })
+        .filter(Boolean);
+
+    if (!sections.length) return;
+
+    const spy = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach((link) => {
+                        link.classList.toggle(
+                            "active-link",
+                            (link.getAttribute("href") || "").replace("#", "") ===
+                                entry.target.id
+                        );
+                    });
+                }
+            });
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+    );
+
+    sections.forEach((section) => spy.observe(section));
+}
+
+// ===================================================
+// Scroll Effects — Sticky Navbar + Progress Bar + Parallax
+// ===================================================
+const stickyHeader = document.querySelector("header");
+const progressBar = document.getElementById("scroll-progress");
+
+// เก็บตำแหน่งภาพต้นไม้ที่จะให้ขยับตาม scroll (parallax)
+const parallaxItems = [];
+document
+    .querySelectorAll(".box-img-right img, .item-img")
+    .forEach((el) => {
+        const wrapper =
+            el.closest(".box-img-right") ||
+            el.closest(".item-product-img") ||
+            el.parentElement;
+        parallaxItems.push({
+            el,
+            wrapper,
+            speed: el.closest(".box-img-right") ? 0.1 : 0.06,
+        });
+    });
+
+function updateParallax() {
+    parallaxItems.forEach(({ el, wrapper, speed }) => {
+        if (!el || !wrapper) return;
+        const rect = wrapper.getBoundingClientRect();
+        const offset =
+            (window.innerHeight / 2 - (rect.top + rect.height / 2)) * speed;
+        const clamped = Math.max(-70, Math.min(70, offset));
+        el.style.setProperty("--py", `${clamped.toFixed(1)}px`);
+    });
+}
+
+function handleScroll() {
+    const scrollY = window.scrollY;
+
+    // แถบความคืบหน้าการ scroll ด้านบนสุด
+    const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+    if (progressBar) {
+        progressBar.style.transform = `scaleX(${
+            maxScroll > 0 ? scrollY / maxScroll : 0
+        })`;
     }
-    lastScrollY = window.scrollY;
+
+    // Sticky navbar: เลื่อนแล้วยังค้างอยู่ + ใส่พื้นหลัง glass เมื่อเลื่อนพ้น 40px
+    if (stickyHeader) {
+        if (scrollY > 40) stickyHeader.classList.add("scrolled");
+        else stickyHeader.classList.remove("scrolled");
+    }
 
     // Back-to-top button
     const backToTop = document.getElementById("back-to-top");
     if (backToTop) {
-        if (window.scrollY > 500) {
+        if (scrollY > 500) {
             backToTop.classList.add("show");
         } else {
             backToTop.classList.remove("show");
         }
     }
-});
+
+    updateParallax();
+    scrollTicking = false;
+}
+
+let scrollTicking = false;
+
+window.addEventListener(
+    "scroll",
+    () => {
+        if (!scrollTicking) {
+            scrollTicking = true;
+            requestAnimationFrame(handleScroll);
+        }
+    },
+    { passive: true }
+);
+
+handleScroll();
 
 // ===================================================
 // Cart / Menu Toggles
@@ -426,13 +654,22 @@ function createParticles() {
 // Scroll Reveal for Static Sections
 // ===================================================
 function initScrollRevealSections() {
-    const sections = document.querySelectorAll(
-        ".box-con-left, .box-right, .our-trendy-plants-items, .customer-review-products, .our-best-o2-con, .footer-con"
-    );
-    sections.forEach((el, index) => {
+    // กลุ่ม section ทั่วไป (hero ใช้ CSS entrance ของตัวเองแล้ว)
+    document
+        .querySelectorAll(
+            ".our-trendy-plants-items, .our-best-o2-con, .footer-con, .our-trendy-plants-header, .marquee-section"
+        )
+        .forEach((el, i) => {
+            el.classList.add("scroll-reveal");
+            el.style.transitionDelay = `${(i % 3) * 0.08}s`;
+        });
+
+    // การ์ดรีวิว — Fade up สวยงามตามลำดับ (staggered delay) ไม่ใช้ transform แนวนอนเพื่อความแม่นยำของ Grid
+    document.querySelectorAll(".customer-review-products").forEach((el, i) => {
         el.classList.add("scroll-reveal");
-        el.style.animationDelay = `${index * 0.1}s`;
+        el.style.transitionDelay = `${i * 0.12}s`;
     });
+
     observeElements();
 }
 
@@ -451,3 +688,201 @@ const backToTopBtn = document.getElementById("back-to-top");
 if (backToTopBtn) {
     backToTopBtn.addEventListener("click", scrollToTop);
 }
+
+// ===================================================
+// Preloader — ซ่อนหน้าจอโหลดเมื่อหน้าเว็บพร้อม
+// ===================================================
+function hidePreloader() {
+    const pre = document.getElementById("preloader");
+    if (!pre || pre.classList.contains("done")) return;
+    pre.classList.add("done");
+    setTimeout(() => pre.remove(), 700);
+}
+
+window.addEventListener("load", () => setTimeout(hidePreloader, 300));
+setTimeout(hidePreloader, 2600); // กันโหลดค้างนานเกินไป
+
+// ===================================================
+// Hero Title — แยกคำให้โผล่ทีละคำ (word by word)
+// ===================================================
+function initHeroTitle() {
+    const h1 = document.querySelector(".box-left h1");
+    if (!h1 || h1.dataset.animated) return;
+    h1.dataset.animated = "true";
+
+    const words = h1.textContent.trim().split(/\s+/);
+    h1.innerHTML = words
+        .map(
+            (word, i) =>
+                `<span class="hero-word" style="--wi:${i}">${word}</span>`
+        )
+        .join(" ");
+}
+
+// ===================================================
+// Product Card Spotlight — แสงเขียวตามตำแหน่งเมาส์บนการ์ด
+// ===================================================
+function initSpotlight() {
+    if (!productCon) return;
+
+    productCon.addEventListener("mousemove", (e) => {
+        const card = e.target.closest(".product-moves");
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+        card.style.setProperty("--my", `${e.clientY - rect.top}px`);
+    });
+
+    productCon.addEventListener("mouseleave", () => {
+        productCon
+            .querySelectorAll(".product-moves")
+            .forEach((card) => {
+                card.style.setProperty("--mx", "50%");
+                card.style.setProperty("--my", "50%");
+            });
+    });
+}
+
+// ===================================================
+// Hero Card 3D Tilt — การ์ดเอียงตามเมาส์
+// ===================================================
+function initTilt() {
+    const card = document.querySelector(".box-contant");
+    if (!card || window.matchMedia("(hover: none)").matches) return;
+
+    const MAX_TILT = 7;
+
+    card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transition = "transform 0.08s linear";
+        card.style.transform = `rotateX(${(-y * MAX_TILT).toFixed(
+            2
+        )}deg) rotateY(${(x * MAX_TILT).toFixed(2)}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transition =
+            "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+        card.style.transform = "rotateX(0deg) rotateY(0deg)";
+    });
+}
+
+// ===================================================
+// Magnetic Footer Icons — ไอคอนโซเชียลล้วงตามเมาส์
+// ===================================================
+function initMagnetic() {
+    if (window.matchMedia("(hover: none)").matches) return;
+
+    document.querySelectorAll(".footer-logo-end h2").forEach((el) => {
+        el.addEventListener("mousemove", (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            el.style.transform = `translate(${(x * 10).toFixed(1)}px, ${(
+                y * 10
+            ).toFixed(1)}px)`;
+        });
+
+        el.addEventListener("mouseleave", () => {
+            el.style.transform = "";
+        });
+    });
+}
+
+// ===================================================
+// Button Ripple — คลื่นกระแทกทุกปุ่มเวลาคลิก
+// ===================================================
+function initRipple() {
+    document.addEventListener("click", (e) => {
+        const btn = e.target.closest("button");
+        if (!btn) return;
+
+        const rect = btn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height) * 2;
+
+        const ripple = document.createElement("span");
+        ripple.className = "ripple";
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+        ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+
+        btn.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 700);
+    });
+}
+
+// ===================================================
+// Newsletter — Subscribe พร้อม validate
+// ===================================================
+function initNewsletter() {
+    const btn = document.getElementById("newsletter-btn");
+    const input = document.getElementById("newsletter-input");
+    if (!btn || !input) return;
+
+    btn.addEventListener("click", () => {
+        const value = input.value.trim();
+        const isValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value);
+
+        if (!isValid) {
+            input.classList.add("input-shake");
+            showToast("กรุณากรอกอีเมลให้ถูกต้อง", "error");
+            setTimeout(() => input.classList.remove("input-shake"), 500);
+        } else {
+            showToast("Subscribe สำเร็จแล้ว! 🌿", "success");
+            input.value = "";
+        }
+    });
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") btn.click();
+    });
+}
+
+// ===================================================
+// Review Cards 3D Interactive Tilt & Spotlight
+// ===================================================
+function initReviewCards3D() {
+    const cards = document.querySelectorAll(".customer-review-products");
+    if (!cards.length || window.matchMedia("(hover: none)").matches) return;
+
+    cards.forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // ส่งพิกัดเมาส์เข้า CSS variables สำหรับทำเอฟเฟกต์ Spotlight แสงนีออน
+            card.style.setProperty("--rx", `${x}px`);
+            card.style.setProperty("--ry", `${y}px`);
+
+            // คำนวณองศาเอียง 3D Tilt แบบนุ่มนวล
+            const xOffset = x / rect.width - 0.5;
+            const yOffset = y / rect.height - 0.5;
+            const maxTilt = 7;
+            const rotateX = (-yOffset * maxTilt).toFixed(2);
+            const rotateY = (xOffset * maxTilt).toFixed(2);
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+            card.style.removeProperty("--rx");
+            card.style.removeProperty("--ry");
+        });
+    });
+}
+
+// ===================================================
+// Initialize new features
+// ===================================================
+initScrollSpy();
+initHeroTitle();
+initSpotlight();
+initTilt();
+initReviewCards3D();
+initMagnetic();
+initRipple();
+initNewsletter();
